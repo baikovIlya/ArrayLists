@@ -135,7 +135,7 @@ namespace ArrayLists
             SizeCheck(_main_array);
         }
 
-        public void DeleteElemrntsByIndex(int index, int count)
+        public void DeleteElementsByIndex(int index, int count)
         {
             if (Length < 1)
             {
@@ -298,7 +298,6 @@ namespace ArrayLists
             SizeCheck(_main_array);
         }
 
-
         public void SortDesscending()
         {
             int[] tmp_array = new int[Length];
@@ -315,6 +314,42 @@ namespace ArrayLists
             }
             _main_array = tmp_array;
             SizeCheck(_main_array);
+        }
+
+        public int DeleteFirstByValue(int value)
+        {
+            int result = -1;
+            for (int i = 0; i < Length; i++)
+            {
+                if (_main_array[i] == value)
+                {
+                    result = i;
+                    DeleteByIndex(result);
+                    break;
+                }
+            }
+            return result;
+        }
+
+        public int DeleteAllByValue(int value)
+        {
+            int result = 0;
+            int[] tmp_array = _main_array;
+            for (int i = 0; i < Length; i++)
+            {
+                if (tmp_array[i] == value)
+                {
+                    result++;
+                    for (int j = i; j < Length-1; j++)
+                    {
+                        tmp_array[i] = tmp_array[i + 1];
+                    }
+                    Length--;
+                }
+            }
+            _main_array = tmp_array;
+            SizeCheck(_main_array);
+            return result;
         }
 
 
