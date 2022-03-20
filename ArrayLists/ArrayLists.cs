@@ -146,6 +146,7 @@ namespace ArrayLists
                     _main_array[index+i] = _main_array[index+i+count];
                 }
                 SizeCheck(_main_array);
+                Length -= count;
             }
         }
 
@@ -203,7 +204,6 @@ namespace ArrayLists
 
         private void MoveRight(int index = 0)
         {
-            SizeCheck(_main_array);
             int[] newArray = new int[_main_array.Length+1];
             for (int i = 0; i < _main_array.Length; i++)
             {
