@@ -342,7 +342,7 @@ namespace ArrayLists
                     result++;
                     for (int j = i; j < Length-1; j++)
                     {
-                        tmp_array[i] = tmp_array[i + 1];
+                        tmp_array[j] = tmp_array[j + 1];
                     }
                     Length--;
                 }
