@@ -77,6 +77,11 @@ namespace ArrayLists
 
         public void DeleteByIndex(int index)
         {
+            if (Length < 1)
+            {
+                throw new Exception("There is nothing to delete here");
+            }
+
             if (index > Length)
             {
                 throw new ArgumentException("This index does not exist");
@@ -92,6 +97,10 @@ namespace ArrayLists
 
         public void DeleteElementsAtTneEnd(int count)
         {
+            if (Length < 1)
+            {
+                throw new Exception("There is nothing to delete here");
+            }
             if (count < 0)
             {
                 throw new ArgumentException("Only positive nombers");
@@ -102,6 +111,10 @@ namespace ArrayLists
 
         public void DeleteElementsFromTheBeginning(int count)
         {
+            if (Length < 1)
+            {
+                throw new Exception("There is nothing to delete here");
+            }
             if (count <0)
             {
                 throw new ArgumentException("Only positive nombers");
@@ -121,6 +134,10 @@ namespace ArrayLists
 
         public void DeleteElemrntsByIndex(int index, int count)
         {
+            if (Length < 1)
+            {
+                throw new Exception("There is nothing to delete here");
+            }
             if (count < 0)
             {
                 throw new ArgumentException("Only positive nombers");
@@ -129,26 +146,60 @@ namespace ArrayLists
             {
                 throw new ArgumentException("This index does not exist");
             }
-            if (count >= Length)
-            {
-                Length = 0;
-                SizeCheck(_main_array);
-            }
-            else if (index + count > Length)
+            int step = index + count;
+            if (step >= Length)
             {
                 Length = index;
                 SizeCheck(_main_array);
             }
             else
             {
-                for (int i = 0; i < Length-count-index; i++)
+                for (int i = 0; i < Length- step; i++)
                 {
-                    _main_array[index+i] = _main_array[index+i+count];
+                    _main_array[index+i] = _main_array[step + i];
                 }
-                SizeCheck(_main_array);
                 Length -= count;
+                SizeCheck(_main_array);
             }
         }
+
+        public int GetValueByIndex(int index)
+        {
+            if (index < 0 || index > Length)
+            {
+                throw new ArgumentException("This index does not exist");
+            }
+            return _main_array[index];
+        }
+        
+        public int SearchFirstIndexByValue(int value)
+        {
+            if (Length < 1)
+            {
+                throw new Exception("There are no items to search for");
+            }
+            int result = -1;
+            for (int i = 0; i < Length; i++)
+            {
+                if (_main_array[i] == value)
+                {
+                    result = i;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        public void ChangeByIndex(int index, int value)
+        {
+            if (index < 0 || index > Length)
+            {
+                throw new ArgumentException("This index does not exist");
+            }
+            _main_array[index] = value;
+        }
+
+
 
 
 
