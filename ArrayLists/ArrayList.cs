@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace ArrayLists
 {
-    public class ArrayLists
+    public class ArrayList
     {
         public int Length { get; private set; }
 
         private int[] _main_array;
 
-        public ArrayLists()
+        public ArrayList()
         {
             _main_array = new int[10];
             Length = 0;
         }
 
-        public ArrayLists(int element)
+        public ArrayList(int element)
         {
             Length = 1;
             _main_array = new int[5] { element, 0, 0, 0, 0 };
         }
 
-        public ArrayLists(int[] array)
+        public ArrayList(int[] array)
         {
             Length = array.Length;
             _main_array = PlusSize(array);
@@ -46,6 +46,10 @@ namespace ArrayLists
 
         public void AddByIndex(int new_element, int index)
         {
+            if (index > Length || index < 0)
+            {
+                throw new ArgumentException("This index does not exist");
+            }
             MoveRight(index);
             _main_array[index] = new_element;
             Length++;
@@ -81,8 +85,7 @@ namespace ArrayLists
             {
                 throw new Exception("There is nothing to delete here");
             }
-
-            if (index > Length)
+            if (index > Length || index < 0)
             {
                 throw new ArgumentException("This index does not exist");
             }
@@ -209,8 +212,73 @@ namespace ArrayLists
             _main_array = tmp_array;
         }
 
+        public int GetMax()
+        {
+            if (Length < 1)
+            {
+                throw new Exception("There are no items to search for");
+            }
+            int result = _main_array[0];
+            for (int i = 1; i < Length; i++)
+            {
+                if (result < _main_array[i])
+                {
+                    result = _main_array[i];
+                }
+            }
+            return result;
+        }
 
+        public int GetMin()
+        {
+            if (Length < 1)
+            {
+                throw new Exception("There are no items to search for");
+            }
+            int result = _main_array[0];
+            for (int i = 1; i < Length; i++)
+            {
+                if (result > _main_array[i])
+                {
+                    result = _main_array[i];
+                }
+            }
+            return result;
+        }
 
+        public int GetIndexOfMax()
+        {
+            if (Length < 1)
+            {
+                throw new Exception("There are no items to search for");
+            }
+            int max_index = 0;
+            for (int i = 1; i < Length; i++)
+            {
+                if (_main_array[max_index] < _main_array[i])
+                {
+                    max_index = i;
+                }
+            }
+            return max_index;
+        }
+
+        public int GetIndexOfMin()
+        {
+            if (Length < 1)
+            {
+                throw new Exception("There are no items to search for");
+            }
+            int min_index = 0;
+            for (int i = 1; i < Length; i++)
+            {
+                if (_main_array[min_index] > _main_array[i])
+                {
+                    min_index = i;
+                }
+            }
+            return min_index;
+        }
 
 
 
