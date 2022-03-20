@@ -280,6 +280,42 @@ namespace ArrayLists
             return min_index;
         }
 
+        public void SortAscending()
+        {
+            int[] tmp_array = new int[Length];
+            for (int i = 1; i < Length; i++)
+            {
+                int current = tmp_array[i];
+                int location = i - 1;
+                while (location >= 0 && tmp_array[location] > current)
+                {
+                    tmp_array[location + 1] = tmp_array[location];
+                    location--;
+                }
+                tmp_array[location + 1] = current;
+            }
+            _main_array = tmp_array;
+            SizeCheck(_main_array);
+        }
+
+
+        public void SortDesscending()
+        {
+            int[] tmp_array = new int[Length];
+            for (int i = 1; i < Length; i++)
+            {
+                int current = tmp_array[i];
+                int location = i - 1;
+                while (location >= 0 && tmp_array[location] < current)
+                {
+                    tmp_array[location + 1] = tmp_array[location];
+                    location--;
+                }
+                tmp_array[location + 1] = current;
+            }
+            _main_array = tmp_array;
+            SizeCheck(_main_array);
+        }
 
 
 
