@@ -199,7 +199,15 @@ namespace ArrayLists
             _main_array[index] = value;
         }
 
-
+        public void Reverse()
+        {
+            int[] tmp_array = new int[(int)(Length*1.5)];
+            for (int i = 0; i < Length; i++)
+            {
+                tmp_array[i] = _main_array[Length-i-1];
+            }
+            _main_array = tmp_array;
+        }
 
 
 
