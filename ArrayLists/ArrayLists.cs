@@ -90,6 +90,67 @@ namespace ArrayLists
             SizeCheck(_main_array);
         }
 
+        public void DeleteElementsAtTneEnd(int count)
+        {
+            if (count < 0)
+            {
+                throw new ArgumentException("Only positive nombers");
+            }
+            Length -= count;
+            SizeCheck(_main_array);
+        }
+
+        public void DeleteElementsFromTheBeginning(int count)
+        {
+            if (count <0)
+            {
+                throw new ArgumentException("Only positive nombers");
+            }
+            if (count >= Length)
+            {
+                Length = 0;
+                SizeCheck(_main_array);
+            }
+            for (int i = 0; i < _main_array.Length-count; i++)
+            {
+                _main_array[i] = _main_array[i+count];
+            }
+            Length -= count;
+            SizeCheck(_main_array);
+        }
+
+        public void DeleteElemrntsByIndex(int index, int count)
+        {
+            if (count < 0)
+            {
+                throw new ArgumentException("Only positive nombers");
+            }
+            if (index >= Length || index<0)
+            {
+                throw new ArgumentException("This index does not exist");
+            }
+            if (count >= Length)
+            {
+                Length = 0;
+                SizeCheck(_main_array);
+            }
+            else if (index + count > Length)
+            {
+                Length = index;
+                SizeCheck(_main_array);
+            }
+            else
+            {
+                for (int i = 0; i < Length-count-index; i++)
+                {
+                    _main_array[index+i] = _main_array[index+i+count];
+                }
+                SizeCheck(_main_array);
+            }
+        }
+
+
+
 
 
 
