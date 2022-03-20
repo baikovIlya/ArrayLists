@@ -51,6 +51,44 @@ namespace ArrayLists
             Length++;
         }
 
+        public void DeleteLast()
+        {
+            if (Length < 1)
+            {
+                throw new Exception("There is nothing to delete here");
+            }
+            Length--;
+            SizeCheck(_main_array);
+        }
+
+        public void DeleteFirst()
+        {
+            if (Length < 1)
+            {
+                throw new Exception("There is nothing to delete here");
+            }
+            for (int i = 0; i < Length; i++)
+            {
+                _main_array[i] = _main_array[i + 1];
+            }
+            Length--;
+            SizeCheck(_main_array);
+        }
+
+        public void DeleteByIndex(int index)
+        {
+            if (index > Length)
+            {
+                throw new ArgumentException("This index does not exist");
+            }
+            Length--;
+            for (int i = index; i < Length; i++)
+            {
+                _main_array[i] = _main_array[i+1];
+                
+            }
+            SizeCheck(_main_array);
+        }
 
 
 
@@ -59,7 +97,8 @@ namespace ArrayLists
 
 
 
-        
+
+
         private int[] PlusSize(int[] array)
         {
             int result_length = (int)(array.Length*1.5+1);
