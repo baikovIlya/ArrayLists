@@ -166,6 +166,11 @@ namespace ArrayLists
             }
         }
 
+        public int GetListLength()
+        {
+            return Length;
+        }
+
         public int GetValueByIndex(int index)
         {
             if (index < 0 || index > Length)
