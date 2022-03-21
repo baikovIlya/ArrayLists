@@ -30,6 +30,26 @@ namespace ArrayLists
             _main_array = PlusSize(array);
         }
 
+        public int this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                return _main_array[index];
+            }
+            set
+            {
+                if (index < 0 || index >= Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                _main_array[index] = value;
+            }
+        }
+
         public void AddLast(int last_elemet)
         {
             SizeCheck(_main_array);
@@ -65,21 +85,7 @@ namespace ArrayLists
             SizeCheck(_main_array);
         }
 
-        public void DeleteFirst()
-        {
-            if (Length < 1)
-            {
-                throw new Exception("There is nothing to delete here");
-            }
-            for (int i = 0; i < Length; i++)
-            {
-                _main_array[i] = _main_array[i + 1];
-            }
-            Length--;
-            SizeCheck(_main_array);
-        }
-
-        public void DeleteByIndex(int index)
+        public void DeleteByIndex(int index = 0)
         {
             if (Length < 1)
             {
@@ -171,15 +177,6 @@ namespace ArrayLists
             return Length;
         }
 
-        public int GetValueByIndex(int index)
-        {
-            if (index < 0 || index > Length)
-            {
-                throw new ArgumentException("This index does not exist");
-            }
-            return _main_array[index];
-        }
-        
         public int SearchFirstIndexByValue(int value)
         {
             if (Length < 1)
@@ -196,15 +193,6 @@ namespace ArrayLists
                 }
             }
             return result;
-        }
-
-        public void ChangeByIndex(int index, int value)
-        {
-            if (index < 0 || index > Length)
-            {
-                throw new ArgumentException("This index does not exist");
-            }
-            _main_array[index] = value;
         }
 
         public void Reverse()
@@ -337,24 +325,22 @@ namespace ArrayLists
         }
 
         public int DeleteAllByValue(int value)
-        {
-            int result = 0;
-            int[] tmp_array = _main_array;
+        {            
+            int count = 0;
             for (int i = 0; i < Length; i++)
             {
-                if (tmp_array[i] == value)
+            if (_main_array[i] == value)
                 {
-                    result++;
-                    for (int j = i; j < Length-1; j++)
-                    {
-                        tmp_array[j] = tmp_array[j + 1];
-                    }
-                    Length--;
+                    count++;
+                }
+                else
+                {
+                    _main_array[i - count] = _main_array[i];
                 }
             }
-            _main_array = tmp_array;
+            Length -= count;
             SizeCheck(_main_array);
-            return result;
+            return count;           
         }
 
 
