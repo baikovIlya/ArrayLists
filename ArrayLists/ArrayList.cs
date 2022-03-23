@@ -36,7 +36,7 @@ namespace ArrayLists
             {
                 if (index < 0 || index >= Length)
                 {
-                    throw new IndexOutOfRangeException();
+                    throw new IndexOutOfRangeException("This index doesn't exist");
                 }
                 return _main_array[index];
             }
@@ -44,7 +44,7 @@ namespace ArrayLists
             {
                 if (index < 0 || index >= Length)
                 {
-                    throw new IndexOutOfRangeException();
+                    throw new IndexOutOfRangeException("This index doesn't exist");
                 }
                 _main_array[index] = value;
             }
@@ -373,7 +373,7 @@ namespace ArrayLists
             {
                 new_array[i] = this[i];
             }
-            for (int i = index; i < list.Length; i++)
+            for (int i = index; i < index+list.Length; i++)
             {
                 new_array[i] = list[i - index];
             }
@@ -468,6 +468,12 @@ namespace ArrayLists
             Console.WriteLine();
         }
 
-
+        public static void WriteAr(int[] ar)
+        {
+            for (int i = 0; i < ar.Length; i++)
+            {
+                Console.Write(ar[i]); Console.Write(" ");
+            }
+        }
     }
 }
