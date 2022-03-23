@@ -14,14 +14,14 @@ namespace ArrayLists
 
         public ArrayList()
         {
-            _main_array = new int[10];
+            _main_array = new int[0];
             Length = 0;
         }
 
         public ArrayList(int element)
         {
             Length = 1;
-            _main_array = new int[5] { element, 0, 0, 0, 0 };
+            _main_array = new int[1] { element };
         }
 
         public ArrayList(int[] array)
@@ -172,11 +172,6 @@ namespace ArrayLists
             }
         }
 
-        public int GetListLength()
-        {
-            return Length;
-        }
-
         public int SearchFirstIndexByValue(int value)
         {
             if (Length < 1)
@@ -197,12 +192,8 @@ namespace ArrayLists
 
         public void Reverse()
         {
-            int[] tmp_array = new int[(int)(Length*1.5)];
-            for (int i = 0; i < Length; i++)
-            {
-                tmp_array[i] = _main_array[Length-i-1];
-            }
-            _main_array = tmp_array;
+            Cut(_main_array);
+            Array.Reverse(_main_array);
         }
 
         public int GetMax()
@@ -291,7 +282,14 @@ namespace ArrayLists
             SizeCheck(_main_array);
         }
 
-        public void SortDesscending()
+        public void SorsAsc()
+        {
+            Cut(_main_array);
+            Array.Sort(_main_array);
+            SizeCheck(_main_array);
+        }
+
+        public void SortDescending()
         {
             int[] tmp_array = new int[Length];
             for (int i = 1; i < Length; i++)
@@ -306,6 +304,14 @@ namespace ArrayLists
                 tmp_array[location + 1] = current;
             }
             _main_array = tmp_array;
+            SizeCheck(_main_array);
+        }
+
+        public void SortDesc()
+        {
+            Cut(_main_array);
+            Array.Sort(_main_array);
+            Array.Reverse(_main_array);
             SizeCheck(_main_array);
         }
 
@@ -341,6 +347,42 @@ namespace ArrayLists
             Length -= count;
             SizeCheck(_main_array);
             return count;           
+        }
+
+        public void AddAnotherList(ArrayList list)
+        {
+            int new_lenght = list.Length + this.Length;
+            int[] new_array = new int[new_lenght];
+            for (int i = 0; i < this.Length; i++)
+            {
+                new_array[i] = this[i];
+            }
+            for (int i = this.Length; i < new_lenght; i++)
+            {
+                new_array[i] = list[i-Length];
+            }
+            _main_array = new_array;
+            Length = new_lenght;
+        }
+
+        public void AddAnotherListByIndex(int index, ArrayList list)
+        {
+            int new_lenght = list.Length + this.Length;
+            int[] new_array = new int[new_lenght];
+            for (int i = 0; i < index; i++)
+            {
+                new_array[i] = this[i];
+            }
+            for (int i = index; i < list.Length; i++)
+            {
+                new_array[i] = list[i - index];
+            }
+            for (int i = index+list.Length; i < new_lenght; i++)
+            {
+                new_array[i] = this[i-list.Length];
+            }
+            _main_array = new_array;
+            Length = new_lenght;
         }
 
 
@@ -405,6 +447,27 @@ namespace ArrayLists
             newArray[index] = 0;
             _main_array = newArray;
         }
+
+        private void Cut(int[] array)
+        {
+            int[] new_array = new int[Length];
+            for (int i = 0; i < Length; i++)
+            {
+                new_array[i] = array[i];
+            }
+            _main_array = new_array;
+        }
+
+        public static void Write(ArrayList list)
+        {
+            Console.Write($"L {list.Length} :");
+            for (int i = 0; i < list.Length; i++)
+            {
+                Console.Write($"{list[i]} ");
+            }
+            Console.WriteLine();
+        }
+
 
     }
 }
