@@ -14,6 +14,7 @@ namespace Lists.Tests
             Assert.AreEqual(expected_list, list);
         }
 
+
         
         [TestCaseSource(typeof(AddFirstTestSource))]
         public void AddFirstTest(int element, ArrayList list, ArrayList expected_list)
@@ -21,6 +22,7 @@ namespace Lists.Tests
             list.AddFirst(element);
             Assert.AreEqual(expected_list, list);
         }
+
 
 
         [TestCaseSource(typeof(AddByIndexTestSource))]
@@ -38,6 +40,7 @@ namespace Lists.Tests
         }
 
 
+
         [TestCaseSource(typeof(DeleteLastTestSource))]
         public void DeleteLastTest(ArrayList list, ArrayList expected_list)
         {
@@ -51,6 +54,7 @@ namespace Lists.Tests
             Assert.Throws<Exception>(() => list.DeleteLast());
 
         }
+
 
 
         [TestCaseSource(typeof(DeleteByIndexTestSource))]
@@ -73,6 +77,7 @@ namespace Lists.Tests
         }
 
 
+
         [TestCaseSource(typeof(DeleteElementsAtTneEndTestSource))]
         public void DeleteElementsAtTneEndTest(int count, ArrayList list, ArrayList expected_list)
         {
@@ -93,6 +98,7 @@ namespace Lists.Tests
         }
 
 
+
         [TestCaseSource(typeof(DeleteElementsFromTheBeginningTestSource))]
         public void DeleteElementsFromTheBeginningTest(int count, ArrayList list, ArrayList expected_list)
         {
@@ -111,6 +117,7 @@ namespace Lists.Tests
         {
             Assert.Throws<Exception>(() => list.DeleteElementsFromTheBeginning(count));
         }
+
 
 
         [TestCaseSource(typeof(DeleteElementsByIndexTestSource))]
@@ -139,6 +146,7 @@ namespace Lists.Tests
         }
 
 
+
         [TestCaseSource(typeof(SearchFirstIndexByValueTestSource))]
         public void SearchFirstIndexByValueTest(int value, int expected_index, ArrayList list)
         {
@@ -147,12 +155,14 @@ namespace Lists.Tests
         }
 
 
+
         [TestCaseSource(typeof(ReverseTestSource))]
         public void ReverseTest(ArrayList list, ArrayList expected_list)
         {
             list.Reverse();
             Assert.AreEqual(expected_list, list);
         }
+
 
 
         [TestCaseSource(typeof(GetMaxTestSource))]
@@ -168,6 +178,8 @@ namespace Lists.Tests
             Assert.Throws<Exception>(() => list.GetMax());
         }
 
+
+
         [TestCaseSource(typeof(GetMinTestSource))]
         public void GetMinTest(ArrayList list, int expected)
         {
@@ -180,6 +192,8 @@ namespace Lists.Tests
         {
             Assert.Throws<Exception>(() => list.GetMin());
         }
+
+
 
         [TestCaseSource(typeof(GetIndexOfMaxTestSource))]
         public void GetIndexOfMaxTest(ArrayList list, int expected)
@@ -194,6 +208,8 @@ namespace Lists.Tests
             Assert.Throws<Exception>(() => list.GetIndexOfMax());
         }
 
+
+
         [TestCaseSource(typeof(GetIndexOfMinTestSource))]
         public void GetIndexOfMinTest(ArrayList list, int expected)
         {
@@ -206,10 +222,6 @@ namespace Lists.Tests
         {
             Assert.Throws<Exception>(() => list.GetIndexOfMin());
         }
-
-
-
-
 
 
 
@@ -227,6 +239,8 @@ namespace Lists.Tests
             Assert.AreEqual(expected_list, list);
         }
 
+
+
         [TestCaseSource(typeof(SortDescendingTestSource))]
         public void SortDescendingTest(ArrayList list, ArrayList expected_list)
         {
@@ -243,6 +257,23 @@ namespace Lists.Tests
 
 
 
+        [TestCaseSource(typeof(DeleteFirstByValueTestSource))]
+        public void DeleteFirstByValueTest(int value, int result_expected, ArrayList list, ArrayList expected_list)
+        {
+            int result_actual = list.DeleteFirstByValue(value);
+            Assert.AreEqual(result_expected, result_actual);
+            Assert.AreEqual(expected_list, list);
+        }
+
+
+
+        [TestCaseSource(typeof(DeleteAllByValueTestSource))]
+        public void DeleteAllByValueTest(int value, int result_expected, ArrayList list, ArrayList expected_list)
+        {
+            int result_actual = list.DeleteAllByValue(value);
+            Assert.AreEqual(result_expected, result_actual);
+            Assert.AreEqual(expected_list, list);
+        }
 
 
 
@@ -252,6 +283,8 @@ namespace Lists.Tests
             list.AddAnotherList(add_list);
             Assert.AreEqual(expected_list, list);
         }
+
+
 
         [TestCaseSource(typeof(AddListByIndexTestSource))]
         public void AddAnotherListByIndexTest(int index, ArrayList list, ArrayList add_list, ArrayList expected_list)
@@ -265,35 +298,6 @@ namespace Lists.Tests
         {
             Assert.Throws<ArgumentException>(() => list.AddAnotherListByIndex(index, add_list));
         }
-
-
-
-
-
-
-
-
-
-
-        [TestCaseSource(typeof(DeleteFirstByValueTestSource))]
-        public void DeleteFirstByValueTest(int value, int result_expected, ArrayList list, ArrayList expected_list)
-        {
-            int result_actual = list.DeleteFirstByValue(value);
-            Assert.AreEqual(result_expected, result_actual);
-            Assert.AreEqual(expected_list, list);
-        }
-
-
-        [TestCaseSource(typeof(DeleteAllByValueTestSource))]
-        public void DeleteAllByValueTest(int value, int result_expected, ArrayList list, ArrayList expected_list)
-        {
-            int result_actual = list.DeleteAllByValue(value);
-            Assert.AreEqual(result_expected, result_actual);
-            Assert.AreEqual(expected_list, list);
-        }
-
-
-
 
 
     }

@@ -276,19 +276,4 @@ namespace Lists.Tests
     }
 
 
-
-
-
-
-
 }
-
-
-
-//public class AddLastTestSource : IEnumerable
-//{
-//    public IEnumerator GetEnumerator()
-//    {
-//        yield return new object[] { 2, new ArrayList(new int[] { 1, 2 }), new ArrayList(new int[] { 1, 2, 2 }) };
-//    }
-//}
