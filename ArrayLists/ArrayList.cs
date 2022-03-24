@@ -91,7 +91,7 @@ namespace Lists
             {
                 throw new Exception("There is nothing to delete here");
             }
-            if (index > Length || index < 0)
+            if (index >= Length || index < 0)
             {
                 throw new ArgumentException("This index does not exist");
             }
@@ -110,9 +110,9 @@ namespace Lists
             {
                 throw new Exception("There is nothing to delete here");
             }
-            if (count < 0)
+            if (count < 1 || count > Length)
             {
-                throw new ArgumentException("Only positive nombers");
+                throw new ArgumentException("Count shoulb be positive and less or equal then Length");
             }
             Length -= count;
             SizeCheck(_main_array);
@@ -124,14 +124,9 @@ namespace Lists
             {
                 throw new Exception("There is nothing to delete here");
             }
-            if (count <0)
+            if (count < 1 || count > Length)
             {
-                throw new ArgumentException("Only positive nombers");
-            }
-            if (count >= Length)
-            {
-                Length = 0;
-                SizeCheck(_main_array);
+                throw new ArgumentException("Count should be positive and less or equal then Length");
             }
             for (int i = 0; i < _main_array.Length-count; i++)
             {
@@ -147,9 +142,9 @@ namespace Lists
             {
                 throw new Exception("There is nothing to delete here");
             }
-            if (count < 0)
+            if (count < 1 || count > Length)
             {
-                throw new ArgumentException("Only positive nombers");
+                throw new ArgumentException("Count should be positive and less or equal then Length");
             }
             if (index >= Length || index<0)
             {
