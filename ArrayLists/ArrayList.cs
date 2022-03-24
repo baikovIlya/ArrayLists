@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArrayLists
+namespace Lists
 {
     public class ArrayList
     {
@@ -385,7 +385,43 @@ namespace ArrayLists
             Length = new_lenght;
         }
 
+        public override string ToString()
+        {
+            string str = " ";
 
+            for (int i = 0; i < Length; i++)
+            {
+                str += $"{_main_array[i]} ";
+            }
+
+            return str;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            bool result = true;
+
+            if (obj == null || !(obj is ArrayList))
+            {
+                result =  false;
+            }
+
+            ArrayList list = (ArrayList)obj!;
+
+            if (list.Length != this.Length)
+            {
+                result = false;
+            }
+            for (int i = 0; i < this.Length; i++)
+            {
+                if (list[i] != this[i])
+                {
+                    result = false;
+                }
+            }
+
+            return result;
+        }
 
 
 
@@ -468,12 +504,5 @@ namespace ArrayLists
             Console.WriteLine();
         }
 
-        public static void WriteAr(int[] ar)
-        {
-            for (int i = 0; i < ar.Length; i++)
-            {
-                Console.Write(ar[i]); Console.Write(" ");
-            }
-        }
     }
 }
