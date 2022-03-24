@@ -18,7 +18,7 @@ namespace Lists.Tests
         }
     }
 
-    public class DeleteLastNegativeTestSource : IEnumerable
+    public class EmptyListTestSource : IEnumerable
     {
         public IEnumerator GetEnumerator()
         {
@@ -89,5 +89,14 @@ namespace Lists.Tests
         }
     }
 
+    public class AddAnotherListByIndexWhenIndexIsWrongTestSource : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            yield return new object[] { 3, new ArrayList(new int[] {1,1 }), new ArrayList(new int[] {1,1 }) };
+            yield return new object[] { -1, new ArrayList(new int[] {2,3,4 }), new ArrayList(new int[] {5,1,6 }) };
+            yield return new object[] { 1, new ArrayList(new int[] { }), new ArrayList(new int[] {5,3 }) };
 
+        }
+    }
 }

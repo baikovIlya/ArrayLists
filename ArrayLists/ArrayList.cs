@@ -262,6 +262,10 @@ namespace Lists
         public void SortAscending()
         {
             int[] tmp_array = new int[Length];
+            for (int i = 0; i < tmp_array.Length; i++)
+            {
+                tmp_array[i] = _main_array[i];
+            }
             for (int i = 1; i < Length; i++)
             {
                 int current = tmp_array[i];
@@ -287,6 +291,10 @@ namespace Lists
         public void SortDescending()
         {
             int[] tmp_array = new int[Length];
+            for (int i = 0; i < tmp_array.Length; i++)
+            {
+                tmp_array[i] = _main_array[i];
+            }
             for (int i = 1; i < Length; i++)
             {
                 int current = tmp_array[i];
@@ -362,6 +370,10 @@ namespace Lists
 
         public void AddAnotherListByIndex(int index, ArrayList list)
         {
+            if (index > Length || index < 0)
+            {
+                throw new ArgumentException("This index does not exist");
+            }
             int new_lenght = list.Length + this.Length;
             int[] new_array = new int[new_lenght];
             for (int i = 0; i < index; i++)
